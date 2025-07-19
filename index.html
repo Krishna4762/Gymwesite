@@ -1,410 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerFlex Gym - Complete</title>
-    <style>
-        /* ===== Base Styles ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            scroll-behavior: smooth;
-        }
-        
-        /* ===== Navbar ===== */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #000;
-            color: white;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ff5500;
-            margin-right: auto; /* Pushes nav items to right */
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: 0.3s;
-            font-size: 1.1rem;
-        }
-        
-        .nav-links a:hover {
-            color: #ff5500;
-        }
-        
-        .menu-btn {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-        
-        /* ===== Sections ===== */
-        section {
-            min-height: 100vh;
-            padding: 150px 8% 100px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-        }
-        
-        /* Home Section */
-        #home {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1581009137042-c552e485697a') center/cover;
-        }
-        
-        #home h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta-btn {
-            padding: 15px 35px;
-            background: #ff5500;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            margin-top: 20px;
-        }
-        
-        .cta-btn:hover {
-            background: #ff3300;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255,85,0,0.4);
-        }
-        
-        /* About Section */
-        #about {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f') center/cover;
-        }
-        
-        /* Classes Section */
-        #classes {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b') center/cover;
-        }
-        
-        /* Trainers Section */
-        #trainers {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf') center/cover;
-        }
-        
-        /* Membership Section */
-        #membership {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa') center/cover;
-        }
-        
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1483721310020-03333e577078') center/cover;
-        }
-        
-        /* Stats Grid */
-        .stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .stat-box {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        
-        /* Contact Form */
-        .contact-form {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 100%;
-        }
-        
-        .contact-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
-        
-        /* Map */
-        .map {
-            margin-top: 30px;
-            width: 100%;
-            height: 300px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        /* ===== Mobile Responsive ===== */
-        @media (max-width: 768px) {
-            nav {
-                padding: 15px 5%;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: #000;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 30px;
-                transition: 0.5s;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .menu-btn {
-                display: block;
-            }
-            
-            #home h1 {
-                font-size: 2.2rem;
-            }
-            
-            .stats {
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="logo">KRISHNA JI</div>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#classes">Classes</a>
-            <a href="#trainers">Trainers</a>
-            <a href="#membership">Membership</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="menu-btn">☰</div>
-    </nav>
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>My Social Links | Professional</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <link rel="stylesheet" href="cdc.css">  
+</head>  
+<body>  
+    <div class="rgb-background"></div>  
+    <div class="glass-card">  
+        <div class="profile">  
+            <img src="pd.jpg" alt="Profile" class="profile-pic">  
+            <h1 class="name">KRISHNA JI</h1>  
+            <p class="bio">Digital Creator | Developer</p>  
+        </div>  
 
-    <!-- Home Section -->
-    <section id="home">
-        <h1>Build Your Dream Body</h1>
-        <p>Professional Training Since 2010</p>
-        <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView()">Join Now</button>
-    </section>
+        <div class="social-links">  
+            <a href="https://youtube.com/@hime_anshi?si=-JWdEU1c1jEcETBA" class="social-btn youtube">
+                <i class="fab fa-youtube"></i><span>YouTube</span>
+            </a>  
+            <a href="https://www.instagram.com/krishnaji222227?igsh=eGg5cjd5NXMwMHB2" class="social-btn instagram">
+                <i class="fab fa-instagram"></i><span>Instagram</span>
+            </a>  
+             <a href="https://www.threads.net/@krishnaji22227" class="social-btn threads">
+    <img src="threads.jpg" alt="Threads" style="width: 25px; height: 25px;">
+    <span>Threads</span>
+</a>
+</a>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>We've transformed 10,000+ lives with our expert trainers and world-class facilities</p>
-        <div class="stats">
-            <div class="stat-box">
-                <h3>13+</h3>
-                <p>Years Experience</p>
-            </div>
-            <div class="stat-box">
-                <h3>50+</h3>
-                <p>Weekly Classes</p>
-            </div>
-        </div>
-    </section>
+            <a href="https://github.com/Krishna4762" class="social-btn github">
+                <i class="fab fa-github"></i><span>GitHub</span>
+            </a>  
+            <a href="#" class="social-btn linkedin">
+                <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+            </a>  
+        </div>  
 
-    <!-- Classes Section -->
-    <section id="classes">
-        <h2>Our Classes</h2>
-        <p>Yoga, Cardio, Weight Training, Zumba, and more</p>
-        <div class="stats">
-            <div class="stat-box">
-                <h3>7 AM</h3>
-                <p>Morning Yoga</p>
-            </div>
-            <div class="stat-box">
-                <h3>6 PM</h3>
-                <p>Evening Cardio</p>
-            </div>
-        </div>
-    </section>
+        <div class="footer">  
+            <p>Made with ❤️ & <span class="rgb-text">KRISHNA JI</span></p>  
+        </div>  
+    </div>  
 
-    <!-- Trainers Section -->
-    <section id="trainers">
-        <h2>Our Trainers</h2>
-        <p>Certified professionals with 5+ years experience</p>
-        <div class="stats">
-            <div class="stat-box">
-                <h3>10+</h3>
-                <p>Certified Trainers</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Membership Section -->
-    <section id="membership">
-        <h2>Membership Plans</h2>
-        <p>Affordable packages for everyone</p>
-        <div class="stats">
-            <div class="stat-box">
-                <h3>₹1999</h3>
-                <p>Basic Plan</p>
-            </div>
-            <div class="stat-box">
-                <h3>₹3999</h3>
-                <p>Pro Plan</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" style="background:#f5f5f5; color:#333;">
-    <h2>Contact Us</h2>
-    
-    <div class="contact-form">
-        <h3>Call Back Request</h3>
-        <input type="text" id="userName" placeholder="Your Name" style="width:100%; padding:10px; margin:10px 0;">
-        <input type="tel" id="userPhone" placeholder="Mobile Number" style="width:100%; padding:10px;">
-        <button onclick="sendWhatsApp()" style="background:#25D366; color:white; border:none; padding:12px 20px; margin-top:15px; border-radius:5px; cursor:pointer;">
-            <i class="fab fa-whatsapp"></i> WhatsApp Pe Message Karein
-        </button>
-        <p id="whatsappStatus" style="margin-top:10px;"></p>
-    </div>
-    
-    <div class="map" style="margin-top:30px;">
-        <iframe src="https://maps.google.com/maps?q=your+gym+address&output=embed" width="100%" height="300" frameborder="0"></iframe>
-    </div>
-</section>
-
-<script>
-    function sendWhatsApp() {
-        const name = document.getElementById('userName').value;
-        const phone = document.getElementById('userPhone').value;
-        const statusMsg = document.getElementById('whatsappStatus');
-        
-        if (!name || !phone) {
-            statusMsg.textContent = "Please fill all details!";
-            statusMsg.style.color = "red";
-            return;
-        }
-        
-        const message = `Callback Request from ${name} (${phone})`;
-        window.open(`https://wa.me/918683972878?text=${encodeURIComponent(message)}`);
-        
-        statusMsg.textContent = "Thank you! Please send this WhatsApp message.";
-        statusMsg.style.color = "green";
-    }
-</script>
-
-    </section>
-
-<!-- ===== JavaScript ===== -->
-<script>
-    document.getElementById('callbackForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const form = e.target;
-        const formData = new FormData(form);
-        const messageDiv = document.querySelector('.form-message');
-        
-        // Demo Submission (Replace with actual backend code)
-        setTimeout(() => {
-            const name = formData.get('name');
-            const phone = formData.get('phone');
-            
-            messageDiv.textContent = `धन्यवाद ${name}! हम आपको ${phone} पर जल्द कॉल करेंगे।`;
-            messageDiv.style.color = "#4CAF50"; // Green color
-            form.reset();
-            
-            // Reset message after 5 seconds
-            setTimeout(() => {
-                messageDiv.textContent = "";
-            }, 5000);
-            
-        }, 1000);
-    });
-</script>
-
-<!-- ===== CSS Styling ===== -->
-<style>
-    .contact-form {
-        background: rgba(255,255,255,0.1);
-        padding: 30px;
-        border-radius: 10px;
-        max-width: 500px;
-        width: 100%;
-        margin: 0 auto;
-    }
-    
-    .contact-form input {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 5px;
-        font-size: 1rem;
-    }
-    
-    .form-message {
-        margin: 15px 0;
-        min-height: 20px;
-        font-size: 0.9rem;
-    }
-</style>
-   
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.menu-btn').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu after click
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-    </script>
-</body>
+    <script src="jvj.js"></script>
+</body>  
 </html>
